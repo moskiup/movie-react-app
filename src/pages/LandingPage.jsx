@@ -39,7 +39,7 @@ export function LandingPage(){
 
   return(
     <>
-      {/* <HeroSlider /> */}
+      <HeroSlider />
       {trendMovies&&<ListSlide movies={trendMovies} titulo="Popular Movies" id={1} handleReachEnd={handleReachEnd}/>}
       {trendSeries&&<ListSlide movies={trendSeries} titulo="Series on air" id={2} handleReachEnd={handleReachEnd}/>}
       {topMovies&&<ListSlide movies={topMovies} titulo="Movies TopRated" id={3} handleReachEnd={handleReachEnd}/>}
