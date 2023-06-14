@@ -1,4 +1,4 @@
-import { HeroSlider } from '../components/heroslider/HeroaSlider.jsx';
+import { HeroSlider } from '../components/heroslider/HeroSlider.jsx';
 import {ListSlide} from './../components/list-slide/ListSlide.jsx';
 import tmdApi , { tvType , movieType } from '../api/tmdbApi.js';
 
