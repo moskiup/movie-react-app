@@ -56,7 +56,7 @@ export function HeroSlider () {
         }
         </div>
   );
-
+      }
 
 const HeroSlideItem = (props) => {
 
@@ -103,7 +103,7 @@ const HeroSlideItem = (props) => {
     </div>
 )
 }
-}
+
 
 
 /*
