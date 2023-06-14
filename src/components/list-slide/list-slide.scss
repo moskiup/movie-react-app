@@ -1,0 +1,11 @@
+@use './../../scss/' as *;
+
+.slide-list .swiper-slide {
+  max-width: $card-size;
+  margin-top: 1.4rem;
+
+}
+
+.slide-list .swiper-wrapper {
+  height: 450px;
+}

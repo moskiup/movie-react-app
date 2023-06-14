@@ -1,0 +1,38 @@
+@use './../../scss/' as *;
+
+.movie-card {
+  padding: 10px;
+  width: 100%;
+  transition: 200ms all ease-in;
+  min-width: $card-size;
+  width: $card-size;
+}
+
+.movie-card h1{
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.movie-card img {
+  object-fit:cover ;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.movie-card:hover {
+  transform: scale(1.15);
+  /* box-shadow: 1px 0px 10px #333; */
+  border-radius: 10px;
+}
+
+@media( max-width:400px){
+  .movie-card {
+    padding: 0;
+  }
+  .movie-card img{
+    width: 90%;
+    height: auto;
+  }
+}
