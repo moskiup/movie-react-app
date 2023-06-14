@@ -32,25 +32,25 @@ export function HeroSlider () {
   return (
     <div className="hero-slider">
 
-      <Swiper
+      {/* <Swiper
                   modules={[Autoplay]}
                   grabCursor={true}
                   spaceBetween={0}
                   slidesPerView={1}
                   autoplay={{delay: 5000}}
-      >
+      > */}
 
         {
           movies.map((movie, i) => 
           
-            <SwiperSlide key={i}>
+            // <SwiperSlide key={i}>
             {({ isActive }) => (
                 <HeroSlideItem item={movie} className={`${isActive ? 'active' : ''}`} />
             )}
-            </SwiperSlide>
+            // </SwiperSlide>
           )
         }
-        </Swiper> 
+        {/* </Swiper>  */}
         {
             // movieItems.map((item, i) => <TrailerModal key={i} item={item}/>)
         }
