@@ -11,7 +11,8 @@ export function MyRoutes(){
       <Route path="/" element={<LandingPage/>} />
       <Route path="/movies" element={<MoviePage/>} />
       <Route path="/series" element={<SeriesPage/>} />
-      <Route path="/movie/:idMovie" element={<DetailPage/>} />
+      <Route path="/movie/:id" element={<DetailPage/>} />
+      <Route path="/serie/:id" element={<DetailPage/>} />
       <Route path="*" element={<ErrorPage/>} />
     </Routes>)
 }
