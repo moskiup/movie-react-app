@@ -1,0 +1,14 @@
+# Ignorar todos los archivos en el directorio "dist"
+dist/*
+
+# Ignorar archivos con extensión ".md"
+*.md
+
+# Ignorar el archivo "config.js"
+config.js
+
+# Ignorar todos los archivos dentro del directorio "logs"
+logs/**
+
+# Ignorar el directorio "node_modules" en cualquier nivel
+node_modules/
