@@ -39,7 +39,7 @@ export function MovieGrid(){
         return(
         <Link key={movie.id} to={`/movie/${movie.id}`}>
           <li >
-            <MovieCard  movie={movie}/> 
+            <MovieCard   movie={movie}/> 
           </li>
           </Link>)}
       )};

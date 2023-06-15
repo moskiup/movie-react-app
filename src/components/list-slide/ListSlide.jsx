@@ -7,13 +7,8 @@ import './list-slide.scss';
 export function ListSlide(props){
 
   const movies = props.movies ||[];
-  const title = props.titulo;
-  const id= props.id;
-  
-
-function handleReach(){
-  console.log('termino');
-}
+  const title = props.title;
+  const category = props.category;
 
   return(
     <div className="list-container">
@@ -29,7 +24,7 @@ function handleReach(){
         {
           movies&&movies.map((item, i)=> { 
             return (<SwiperSlide key={item.id} >
-              <Link to={`/movie/${item.id}`}>
+              <Link to={`/${category}/${item.id}`}>
                   <MovieCard movie={item} />
               </Link>
             </SwiperSlide>)

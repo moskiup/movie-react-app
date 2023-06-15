@@ -11,11 +11,13 @@ button.outline {
   text-align: center;
   cursor: pointer;
   border: 2px solid $white;
-  margin-right: 25px;
+  margin-right: 50px;
+  transition: 0.3s transform ease;
 
   &:hover{
     background-color: $white;
-    color: $black;
+    color: $primary-color;
+    transform: scale(1.1);
   }
 
 

@@ -12,11 +12,6 @@ export function LandingPage(){
   const [trendSeries, setTrendSeries] = useState(null);
   const [trendMovies, setTrendMovies] = useState(null);
 
-  const handleReachEnd = (id) => {
-
-    console.log(id);
-  
-  }
 
 
   useEffect(()=>{
@@ -40,10 +35,10 @@ export function LandingPage(){
   return(
     <>
       <HeroSlider />
-      {trendMovies&&<ListSlide movies={trendMovies} titulo="Popular Movies" id={1} handleReachEnd={handleReachEnd}/>}
-      {trendSeries&&<ListSlide movies={trendSeries} titulo="Series on air" id={2} handleReachEnd={handleReachEnd}/>}
-      {topMovies&&<ListSlide movies={topMovies} titulo="Movies TopRated" id={3} handleReachEnd={handleReachEnd}/>}
-      {topSeries&&<ListSlide movies={topSeries} titulo="Series TopRated" id={4} handleReachEnd={handleReachEnd}/>}
+      {trendMovies&&<ListSlide movies={trendMovies} category="movies" title="Popular Movies" id={1} />}
+      {trendSeries&&<ListSlide movies={trendSeries} category="series" title="Series on air" id={2} />}
+      {topMovies&&<ListSlide movies={topMovies} category="movies" title="Movies TopRated" id={3} />}
+      {topSeries&&<ListSlide movies={topSeries} category="series" title="Series TopRated" id={4} />}
       
 
     </>);

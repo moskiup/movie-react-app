@@ -36,7 +36,7 @@ export function SeriesGrid(){
     <ul className="series-container">
   
       {series.map(serie=>(
-        <Link key={serie.id} to={`/movie/${serie.id}`}>
+        <Link key={serie.id} to={`/serie/${serie.id}`}>
           <li >
             <MovieCard   movie={serie} /> 
           </li>
