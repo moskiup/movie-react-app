@@ -1,6 +1,6 @@
-import './button.scss';
+import './buttonfill.scss';
 
-export function Button(props) {
+export function ButtonFill(props) {
   const { texto } = props;
   return <button className="fill">{texto}</button>;
 }

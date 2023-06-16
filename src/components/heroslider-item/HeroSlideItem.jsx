@@ -1,6 +1,6 @@
 import apiConfig from '../../api/apiConfig';
 import { Link } from 'react-router-dom';
-import { Button } from '../button/Button';
+import { ButtonFill } from '../buttonfill/ButtonFill';
 import { ButtonOutline } from '../button-outline/ButtonOutline';
 import './hero-slider-item.scss';
 
@@ -38,9 +38,9 @@ export function HeroSlideItem(props) {
           <div className="overview">{item.overview}</div>
           <div className="btns">
             <Link to={`/movie/${item.id}`}>
-              <Button texto="Ver Ahora" />
+              <ButtonFill texto="See Details" />
             </Link>
-            <ButtonOutline texto="Ver Trailer" />
+            <ButtonOutline texto="Watch Trailer" />
           </div>
         </div>
         <div className="poster">

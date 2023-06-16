@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Loader } from './../loader/Loader';
 import './SeriesGrid.css';
 
-export function SeriesGrid() {
+export function CardGrid() {
   const [series, setSeries] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +38,7 @@ export function SeriesGrid() {
           {series.map((serie) => (
             <Link key={serie.id} to={`/serie/${serie.id}`}>
               <li>
-                <MovieCard movie={serie} />
+                <MovieCard />
               </li>
             </Link>
           ))}
