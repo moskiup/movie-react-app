@@ -1,6 +1,6 @@
 import { MovieCard } from './../moviecard/MovieCard';
 import { Loader } from './../loader/Loader';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './MovieGrid.css';
 import tmdbApi, { movieType } from './../../api/tmdbApi';
 import { Link } from 'react-router-dom';
@@ -9,13 +9,16 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 export function MovieGrid() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const unaVez = useRef(true);
 
   useEffect(() => {
     const getlist = async () => {
       const response = await tmdbApi.getMovieList(movieType.popular, { page });
-      setMovies((prev) => [...prev, ...response.results]);
-      if (isLoading) setTimeout(() => setIsLoading(false), 1200);
+      if (unaVez.current || page > 1) {
+        setMovies((prev) => [...prev, ...response.results]);
+        unaVez.current = false;
+      }
     };
 
     getlist();
@@ -35,9 +38,9 @@ export function MovieGrid() {
       >
         {isLoading ? <Loader /> : null}
         <ul className="movie-container">
-          {movies.map((movie) => {
+          {movies.map((movie, i) => {
             return (
-              <Link key={movie.id} to={`/movie/${movie.id}`}>
+              <Link key={i} to={`/movie/${movie.id}`}>
                 <li>
                   <MovieCard movie={movie} />
                 </li>

@@ -9,7 +9,6 @@ import './SeriesGrid.css';
 export function SeriesGrid() {
   const [series, setSeries] = useState([]);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getlist = async () => {
@@ -33,7 +32,6 @@ export function SeriesGrid() {
         hasMore={true}
         loader={<h4>Loading...</h4>}
       >
-        {isLoading ? <Loader /> : null}
         <ul className="series-container">
           {series.map((serie) => (
             <Link key={serie.id} to={`/serie/${serie.id}`}>
