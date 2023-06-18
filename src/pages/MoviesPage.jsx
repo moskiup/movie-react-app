@@ -1,8 +1,7 @@
-import { MovieGrid } from "../components/moviegrid/MovieGrid";
+import { useEffect } from 'react';
+import { MovieGrid } from '../components/moviegrid/MovieGrid';
 
-export function MoviePage(){
-  return(
-    <MovieGrid />
-  )
+export function MoviePage() {
 
+  return <MovieGrid />;
 }

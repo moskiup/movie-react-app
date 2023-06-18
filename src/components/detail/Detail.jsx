@@ -21,7 +21,6 @@ export function Detail() {
 
       const detail = await tmdApi.detail(_category, id);
       const credits = await tmdApi.credits(_category, id);
-      console.log(detail);
       setMovie(detail);
       setCredits(credits);
     };
@@ -41,6 +40,10 @@ export function Detail() {
       style={{ backgroundImage: `url(${url})` }}
     >
       <div className="detail-container">
+        <div className="poster">
+          <div>⭐{movie.vote_average}</div>
+          <img src={imageUrl} />
+        </div>
         <div className="info">
           <h1 className="title">{movie.title}</h1>
           <div className="overview">{movie.overview}</div>
@@ -50,11 +53,6 @@ export function Detail() {
                 return <ButtonOutline key={genre.id} texto={genre.name} />;
               })}
           </div>
-        </div>
-
-        <div className="poster">
-          <div>⭐{movie.vote_average}</div>
-          <img src={imageUrl} />
         </div>
         <div className="cast-container">
           <h1>TOP CAST</h1>
