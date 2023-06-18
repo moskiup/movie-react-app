@@ -1,8 +1,6 @@
-import { SeriesGrid } from "../components/seriesgrid/SeriesGrid";
+import { category } from '../api/tmdbApi';
+import { CardsGrid } from '../components/cardsgrid/CardsGrid';
 
-export function SeriesPage(){
-  return(
-    <SeriesGrid />
-  )
-
+export function SeriesPage() {
+  return <CardsGrid category={category.tv} />;
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { MovieGrid } from '../components/moviegrid/MovieGrid';
+import { CardsGrid } from '../components/cardsgrid/CardsGrid';
+import { category } from '../api/tmdbApi';
 
 export function MoviePage() {
-
-  return <MovieGrid />;
+  return <CardsGrid category={category.movie} />;
 }

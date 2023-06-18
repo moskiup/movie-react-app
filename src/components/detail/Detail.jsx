@@ -15,13 +15,14 @@ export function Detail() {
   const [movie, setMovie] = useState({});
   useEffect(() => {
     const getDetail = async () => {
-      let _category = location.pathname.includes('movie')
+      let _category = location.pathname.includes('movies')
         ? category.movie
         : category.tv;
 
       const detail = await tmdApi.detail(_category, id);
       const credits = await tmdApi.credits(_category, id);
       setMovie(detail);
+      console.log(movie.genres);
       setCredits(credits);
     };
 
@@ -49,11 +50,9 @@ export function Detail() {
           <div className="overview">{movie.overview}</div>
           <div className="genres">
             {movie.genres &&
-              movie.genres.map((genre) => {
-                return (
-                  <ButtonOutline size="sm" key={genre.id} texto={genre.name} />
-                );
-              })}
+              movie.genres.map((genre) => (
+                <ButtonOutline size="sm" key={genre.id} text={genre.name} />
+              ))}
           </div>
         </div>
         <div className="cast-container">
