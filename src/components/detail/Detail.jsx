@@ -50,7 +50,9 @@ export function Detail() {
           <div className="genres">
             {movie.genres &&
               movie.genres.map((genre) => {
-                return <ButtonOutline key={genre.id} texto={genre.name} />;
+                return (
+                  <ButtonOutline size="sm" key={genre.id} texto={genre.name} />
+                );
               })}
           </div>
         </div>
