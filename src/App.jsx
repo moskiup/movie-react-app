@@ -15,6 +15,7 @@ function App() {
           <MyRoutes />
         </div>
       </BrowserRouter>
+      <div id="modal-container"></div>
     </>
   );
 }
