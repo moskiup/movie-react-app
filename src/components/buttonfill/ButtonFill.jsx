@@ -1,10 +1,10 @@
 import './buttonfill.scss';
 
 export function ButtonFill(props) {
-  const { texto } = props;
+  const { text, size = 'lg' } = props;
   return (
-    <button className="fill" >
-      {texto}
+    <button className={`fill ${size}`} onClick={() => props.onclick()}>
+      {text}
     </button>
   );
 }
