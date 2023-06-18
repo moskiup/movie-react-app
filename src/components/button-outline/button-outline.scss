@@ -3,10 +3,9 @@
 button.outline {
   border-radius: 20px;
   padding: 0.5rem 1.8rem;
-  max-width: 200px;
   background-color: transparent;
   color: $white;
-  display: block;  
+  display: block;
   font-size: 1.3rem;
   text-align: center;
   cursor: pointer;
@@ -14,12 +13,14 @@ button.outline {
   margin-right: 50px;
   transition: 0.3s transform ease;
 
-  &:hover{
+  &.sm {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  &:hover {
     background-color: $white;
     color: $primary-color;
     transform: scale(1.1);
   }
-
-
-
 }
