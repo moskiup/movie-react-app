@@ -1,31 +1,34 @@
 import apiConfig from '../../api/apiConfig';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonFill } from '../buttonfill/ButtonFill';
 import { ButtonOutline } from '../button-outline/ButtonOutline';
+import { Modal } from '../modal/Modal';
 import './hero-slider-item.scss';
 
 export function HeroSlideItem(props) {
   const item = props.item;
-
+  const videSrc = '';
   const background = apiConfig.originalImage(
     item.backdrop_path ? item.backdrop_path : item.poster_path
   );
-  const setModalActive = async () => {
-    const modal = document.querySelector(`#modal_${item.id}`);
 
-    const videos = await tmdbApi.getVideos(category.movie, item.id);
+  useEffect(() => {
+    const setModalActive = async () => {
+      // const modal = document.querySelector(`#modal_${item.id}`);
+      // if (videos.results.length > 0) {
+      //   videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
+      //   modal
+      //     .querySelector('.modal__content > iframe')
+      //     .setAttribute('src', videSrc);
+      // } else {
+      //   modal.querySelector('.modal__content').innerHTML = 'No trailer';
+      // }
+      // modal.classList.toggle('active');
+    };
 
-    if (videos.results.length > 0) {
-      const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
-      modal
-        .querySelector('.modal__content > iframe')
-        .setAttribute('src', videSrc);
-    } else {
-      modal.querySelector('.modal__content').innerHTML = 'No trailer';
-    }
-
-    modal.classList.toggle('active');
-  };
+    setModalActive();
+  }, []);
 
   return (
     <div
@@ -40,7 +43,10 @@ export function HeroSlideItem(props) {
             <Link to={`/movie/${item.id}`}>
               <ButtonFill texto="See Details" />
             </Link>
-            <ButtonOutline texto="Watch Trailer" />
+            <ButtonOutline
+              texto="Watch Trailer"
+              onclick={() => prueba(videSrc)}
+            />
           </div>
         </div>
         <div className="poster">
@@ -50,3 +56,22 @@ export function HeroSlideItem(props) {
     </div>
   );
 }
+
+const TrailerModal = (props) => {
+  const item = props.item;
+
+  const iframeRef = useRef(null);
+
+  const onClose = () => iframeRef.current.setAttribute('src', '');
+
+  return (
+    <Modal active={false} id={`modal_${item.id}`}>
+      <iframe
+        ref={iframeRef}
+        width="100%"
+        height="500px"
+        title="trailer"
+      ></iframe>
+    </Modal>
+  );
+};

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { HeroSlideItem } from '../heroslider-item/HeroSlideItem';
+import { TrailerModal } from '../trailermodal/TrailerModal.jsx';
 import './hero-slider.scss';
 
 export function HeroSlider() {
@@ -43,9 +44,9 @@ export function HeroSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
-      {
-        // movieItems.map((item, i) => <TrailerModal key={i} item={item}/>)
-      }
+      {movies.map((item, i) => (
+        <TrailerModal key={'a' + i} item={item} />
+      ))}
     </div>
   );
 }
