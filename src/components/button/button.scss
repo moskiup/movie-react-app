@@ -1,15 +1,12 @@
 @use './../../scss/' as *;
 
-button.outline {
+.btn {
   border-radius: 20px;
   padding: 0.5rem 1.8rem;
-  background-color: transparent;
-  color: $white;
   display: block;
   font-size: 1.3rem;
   text-align: center;
   cursor: pointer;
-  border: 2px solid $white;
   margin-right: 50px;
   transition: 0.3s transform ease;
 
@@ -17,6 +14,26 @@ button.outline {
     font-size: 1rem;
     padding: 0.5rem 1rem;
   }
+}
+
+button.fill {
+  max-width: 200px;
+  background-color: $primary-color;
+  color: $white;
+  box-shadow: 1px 1px 15px $primary-color;
+  border: 0;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: 1px 1px 20px $primary-color;
+    transform: scale(1.1);
+  }
+}
+
+button.outline {
+  background-color: transparent;
+  color: $white;
+  border: 2px solid $white;
 
   &:hover {
     background-color: $white;
