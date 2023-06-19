@@ -1,6 +1,6 @@
 @use '../../scss/' as *;
 
-header  {
+header {
   width: 100%;
   position: fixed;
   z-index: 3;
@@ -13,24 +13,21 @@ header  {
     background-color: black;
     padding: 0.5rem;
   }
-  
+
   nav {
-    color:$white;
-    display:  flex;
+    color: $white;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
     width: 100%;
     max-width: 1500px;
 
-  
-
-    h1{
+    h1 {
       font-size: 3rem;
     }
 
-    
-    ul  {
+    ul {
       display: flex;
       list-style-type: none;
       margin-right: 50px;
@@ -43,10 +40,35 @@ header  {
       .active li {
         border-bottom: 4px $primary-color solid;
       }
-    } 
-
-
+    }
   }
 
+  .logo-container {
+    display: flex;
+    gap: 20px;
+    animation-name: logoanim;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    // animation: logoanim 5s ease-in-out 2s 1 forwards forwards;
+  }
 
+  @keyframes logoanim {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+
+    10% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  img.logo {
+    max-width: 50px;
+    object-fit: contain;
+  }
 }
