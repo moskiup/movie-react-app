@@ -1,5 +1,5 @@
-import { MyRoutes } from './routers/routers';
-import { Header } from './components/header/Header';
+import { MyRoutes } from '@/routers/routers';
+import { Header } from '@components/header/Header';
 import { BrowserRouter } from 'react-router-dom';
 
 import './App.scss';
