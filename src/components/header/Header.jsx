@@ -41,7 +41,7 @@ export function Header() {
           <Link to="/">
             <div className="logo-container">
               <img src={logo} className="logo" />
-              <h1>MOVIES</h1>
+              <h1>mDb</h1>
             </div>
           </Link>
           <ul>
