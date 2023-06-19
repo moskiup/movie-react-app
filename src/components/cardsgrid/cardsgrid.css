@@ -1,18 +1,16 @@
-.movie-container{
+.movie-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill , 230px);
+  grid-template-columns: repeat(auto-fill, 230px);
   gap: 15px;
   justify-content: center;
   list-style-type: none;
-  padding-top: 130px;
-  
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 80%;
 }
 
-
-@media (max-width:400px){
-
-  .movie-container{
-    grid-template-columns: repeat(auto-fill , 90%);
+@media (max-width: 400px) {
+  .movie-container {
+    grid-template-columns: repeat(auto-fill, 90%);
   }
 }
-
