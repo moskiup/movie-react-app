@@ -3,7 +3,7 @@ import { ListSlide } from '@components/list-slide/ListSlide.jsx';
 import tmdApi, { tvType, movieType } from '../api/tmdbApi.js';
 
 import { useState, useEffect } from 'react';
-import { Loader } from '@components/loader/Loader.jsx';
+import { Loader } from '@components/Loader/Loader.jsx';
 
 export function LandingPage() {
   const [topMovies, setTopMovies] = useState(null);
