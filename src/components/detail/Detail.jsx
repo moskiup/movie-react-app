@@ -5,12 +5,14 @@ import apiConfig from '../../api/apiConfig';
 import './detail.scss';
 import { ButtonOutline } from '../button-outline/ButtonOutline';
 import { MovieCard } from '../moviecard/MovieCard';
+import { Loader } from '../loader/Loader';
 
 export function Detail() {
   const { id } = useParams();
   const location = useLocation();
 
   const [credits, setCredits] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
   const [movie, setMovie] = useState({});
   useEffect(() => {
@@ -22,66 +24,81 @@ export function Detail() {
       const detail = await tmdApi.detail(_category, id);
       const credits = await tmdApi.credits(_category, id);
       setMovie(detail);
-      console.log(movie.genres);
+      console.log(detail);
       setCredits(credits);
     };
 
     getDetail();
   }, []);
-  const url = apiConfig.originalImage(
+  const posterUrl = apiConfig.originalImage(
     movie.backdrop_path ? movie.backdrop_path : movie.poster_path
   );
+
   const imageUrl = apiConfig.w300Image(
     movie.poster_path ? movie.poster_path : movie.backdrop_path
   );
 
+  function handleLoad() {
+    setLoading(false);
+  }
+
   return (
-    <div
-      className="detail-background"
-      style={{ backgroundImage: `url(${url})` }}
-    >
-      <div className="detail-container">
-        <div className="poster">
-          <div>⭐{movie.vote_average}</div>
-          <img src={imageUrl} />
-        </div>
-        <div className="info">
-          <h1 className="title">{movie.title}</h1>
-          <div className="overview">{movie.overview}</div>
-          <div className="genres">
-            {movie.genres &&
-              movie.genres.map((genre) => (
-                <ButtonOutline size="sm" key={genre.id} text={genre.name} />
-              ))}
+    <>
+      {isLoading ? <Loader /> : null}
+      {isLoading ? (
+        <img
+          src={posterUrl}
+          onLoad={handleLoad}
+          style={{ maxWidth: '100%', maxHeight: '100vh' }}
+        />
+      ) : null}
+      <div
+        className="detail-background"
+        style={{ backgroundImage: `url(${posterUrl})` }}
+      >
+        <div className="detail-container">
+          <div className="poster">
+            <div>⭐{movie.vote_average}</div>
+            <img src={imageUrl} />
           </div>
-        </div>
-        <div className="cast-container">
-          <h1>TOP CAST</h1>
-          <div className="cast-card-container">
-            {credits.cast &&
-              credits.cast.slice(0, 8).map((cast) => {
-                if (cast.profile_path !== null) {
-                  const imageUrlCast = apiConfig.w300Image(cast.profile_path);
-                  return (
-                    <div className="cast-card">
-                      <img src={imageUrlCast} loading="lazy" />
-                      <p className="name">{`${
-                        cast.name || cast.original_name
-                      }`}</p>
-                      <p className="character">{`${cast.character}`}</p>
-                    </div>
-                  );
-                }
-              })}{' '}
+          <div className="info">
+            <h1 className="title">{movie.title || movie.name}</h1>
+            <div className="overview">{movie.overview}</div>
+            <div className="genres">
+              {movie.genres &&
+                movie.genres.map((genre) => (
+                  <ButtonOutline size="sm" key={genre.id} text={genre.name} />
+                ))}
+            </div>
+          </div>
+          <div className="cast-container">
+            <h1>TOP CAST</h1>
+            <div className="cast-card-container">
+              {credits.cast &&
+                credits.cast.slice(0, 8).map((cast) => {
+                  if (cast.profile_path !== null) {
+                    const imageUrlCast = apiConfig.w300Image(cast.profile_path);
+                    return (
+                      <div className="cast-card" key={cast.id}>
+                        <img src={imageUrlCast} loading="lazy" />
+                        <p className="name">{`${
+                          cast.name || cast.original_name
+                        }`}</p>
+                        <p className="character">{`${cast.character}`}</p>
+                      </div>
+                    );
+                  }
+                })}{' '}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 /*{
-    "adult": false,
+  "adult": false,
     "backdrop_path": "/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg",
     "belongs_to_collection": null,
     "budget": 100000000,
