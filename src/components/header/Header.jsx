@@ -34,7 +34,7 @@ export function Header() {
     <>
       <div className="logo-container-mobile">
         <img src={logo} className="logo" />
-        <h1>MOVIES</h1>
+        <h1>mDb</h1>
       </div>
       <header id="header" className={`navbar ${isSticky ? 'sticky' : ''}`}>
         <nav id="navbar">
