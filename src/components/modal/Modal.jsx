@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { useEffect, useRef } from 'react';
 // import { CSSTransition } from 'react-transition-group';
-import './Modal.scss';
+import './modal.scss';
 
 export function Modal({ isOpen, onClose }) {
   const modalRef = useRef(null);
@@ -39,11 +39,7 @@ export function Modal({ isOpen, onClose }) {
   return ReactDOM.createPortal(
     isOpen && (
       <div className="modal active" onClick={onClose}>
-        <div
-          className="modal-content"
-          ref={modalRef}
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="modal-content" ref={modalRef} onClick={(e) => e.stopPropagation()}>
           <button onClick={onClose}>X</button>
           <div className="modal-body">{props.children}</div>
         </div>
