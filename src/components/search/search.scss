@@ -27,3 +27,22 @@
     cursor: pointer;
   }
 }
+@include mobile {
+  .search-container {
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    input {
+      font-size: 1.2rem;
+      max-width: 70%;
+    }
+
+    button {
+      left: -20px;
+      font-size: 1.2rem;
+      max-width: 30%;
+    }
+  }
+}

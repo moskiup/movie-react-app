@@ -71,12 +71,8 @@
   border-radius: 10px;
 }
 
-@media (max-width: 400px) {
-  .movie-card {
-    padding: 0;
-  }
+@include mobile {
   .movie-card img {
-    width: 90%;
-    height: auto;
+    width: 100%;
   }
 }

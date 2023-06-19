@@ -1,7 +1,7 @@
 import { MovieCard } from '../moviecard/MovieCard';
 import { Loader } from '../loader/Loader';
 import { useEffect, useRef, useState } from 'react';
-import './cardsgrid.css';
+import './cardsgrid.scss';
 import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';
 import { Link, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';

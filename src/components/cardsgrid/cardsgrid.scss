@@ -1,3 +1,5 @@
+@use '@/scss' as *;
+
 .movie-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 230px);
@@ -9,8 +11,8 @@
   width: 80%;
 }
 
-@media (max-width: 400px) {
+@include mobile {
   .movie-container {
-    grid-template-columns: repeat(auto-fill, 90%);
+    width: 100%;
   }
 }
