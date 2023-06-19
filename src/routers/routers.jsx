@@ -13,6 +13,8 @@ export function MyRoutes() {
       <Route path="/series" element={<SeriesPage />} />
       <Route path="/movies/:id" element={<DetailPage />} />
       <Route path="/series/:id" element={<DetailPage />} />
+      <Route path="/movies/search/:keyword" element={<MoviePage />} />
+      <Route path="/series/search/:keyword" element={<SeriesPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
