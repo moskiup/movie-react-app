@@ -1,4 +1,4 @@
-import { HeroSlider } from '../components/heroslider/HeroSlider.jsx';
+import { HeroSlider } from '@components/heroslider/HeroSlider.jsx';
 import { ListSlide } from './../components/list-slide/ListSlide.jsx';
 import tmdApi, { tvType, movieType } from '../api/tmdbApi.js';
 
@@ -33,36 +33,16 @@ export function LandingPage() {
       {isLoading ? <Loader /> : null}
       <HeroSlider />
       {trendMovies && (
-        <ListSlide
-          movies={trendMovies}
-          category="movies"
-          title="Popular Movies"
-          id={1}
-        />
+        <ListSlide movies={trendMovies} category="movies" title="Popular Movies" id={1} />
       )}
       {trendSeries && (
-        <ListSlide
-          movies={trendSeries}
-          category="series"
-          title="Series on air"
-          id={2}
-        />
+        <ListSlide movies={trendSeries} category="series" title="Series on air" id={2} />
       )}
       {topMovies && (
-        <ListSlide
-          movies={topMovies}
-          category="movies"
-          title="Movies TopRated"
-          id={3}
-        />
+        <ListSlide movies={topMovies} category="movies" title="Movies TopRated" id={3} />
       )}
       {topSeries && (
-        <ListSlide
-          movies={topSeries}
-          category="series"
-          title="Series TopRated"
-          id={4}
-        />
+        <ListSlide movies={topSeries} category="series" title="Series TopRated" id={4} />
       )}
     </>
   );

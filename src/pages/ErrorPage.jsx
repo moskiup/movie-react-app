@@ -1,7 +1,5 @@
-import { Error } from "../components/error/Error"
+import { Error } from '@components/error/Error';
 
-export function ErrorPage(){
-
-  return(<Error />)
-
+export function ErrorPage() {
+  return <Error />;
 }
