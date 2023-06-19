@@ -4,7 +4,7 @@ import tmdApi, { category } from '@api/tmdbApi';
 import apiConfig from '@api/apiConfig';
 import './detail.scss';
 import { ButtonOutline } from '@components/button/Button';
-import { Loader } from '@components/loader/Loader';
+import { Loader } from '@components/Loader/Loader';
 
 export function Detail() {
   const { id } = useParams();

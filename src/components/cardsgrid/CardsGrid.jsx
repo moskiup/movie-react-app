@@ -1,5 +1,5 @@
 import { MovieCard } from '../moviecard/MovieCard';
-import { Loader } from '../loader/Loader';
+import { Loader } from '../Loader/Loader';
 import { useEffect, useRef, useState } from 'react';
 import './cardsgrid.css';
 import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';
@@ -11,7 +11,6 @@ export function CardsGrid(props) {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const unaVez = useRef(true);
-  const baseUrl = props.category === category.movie ? 'movies/' : 'series/';
   let { keyword } = useParams();
 
   useEffect(() => {
@@ -26,25 +25,20 @@ export function CardsGrid(props) {
         if (page === 1) {
           if (response?.results) {
             data = response.results.filter((x) => x.poster_path !== null);
-
             setMovies(data);
             unaVez.current = false;
           }
         }
       } else {
         if (props.category === category.movie) {
-          response = await tmdbApi.getMovieList(movieType.popular, {
-            page,
-          });
+          response = await tmdbApi.getMovieList(movieType.popular, { page });
         } else if (props.category === category.tv) {
           response = await tmdbApi.getTvList(tvType.top_rated, { page });
         }
         if (unaVez.current || page > 1) {
-          if (response?.results) {
-            data = response.results.filter((x) => x.poster_path !== null);
-            setMovies((prev) => [...prev, ...data]);
-            unaVez.current = false;
-          }
+          data = response.results.filter((x) => x.poster_path !== null);
+          setMovies((prev) => [...prev, ...data]);
+          unaVez.current = false;
         }
       }
     };
