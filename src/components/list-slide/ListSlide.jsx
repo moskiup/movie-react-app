@@ -1,36 +1,42 @@
-import { MovieCard } from "../moviecard/MovieCard";
+import { MovieCard } from '../moviecard/MovieCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link} from 'react-router-dom';
-
+import SwiperCore, { Scrollbar } from 'swiper/core';
+import { Link } from 'react-router-dom';
 import './list-slide.scss';
+import 'swiper/css/effect-fade';
 
-export function ListSlide(props){
+SwiperCore.use([Scrollbar]);
 
-  const movies = props.movies ||[];
+export function ListSlide(props) {
+  const movies = props.movies || [];
   const title = props.title;
   const category = props.category;
+  // SwiperCore.use([Scrollbar]);
 
-  return(
+  return (
     <div className="list-container">
       <h1>{title}</h1>
-  <Swiper
-                  grabCursor={true}
-                  spaceBetween={10}
-                  slidesPerView={1}
-                  className="slide-list"
-                  
+      <Swiper
+        grabCursor={true}
+        spaceBetween={10}
+        // autoplay={true}
+        slidesPerView="7"
+        className="slide-list"
+        scrollbar={{ draggable: true, dragSize: 24 }}
+        loop={true}
       >
-
-        {
-          movies&&movies.map((item, i)=> { 
-            return (<SwiperSlide key={item.id} >
-              <Link to={`/${category}/${item.id}`}>
+        {movies &&
+          movies.map((item, i) => {
+            return (
+              <SwiperSlide key={item.id}>
+                <Link to={`/${category}/${item.id}`}>
                   <MovieCard movie={item} />
-              </Link>
-            </SwiperSlide>)
-          })
-        }
-        </Swiper> 
-        </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        <div class="swiper-scrollbar"></div>
+      </Swiper>
+    </div>
   );
 }
