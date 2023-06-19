@@ -21,8 +21,8 @@ button.fill {
   background-color: $primary-color;
   color: $white;
   box-shadow: 1px 1px 15px $primary-color;
-  border: 0;
   box-sizing: border-box;
+  border: 2px solid $primary-color;
 
   &:hover {
     box-shadow: 1px 1px 20px $primary-color;
