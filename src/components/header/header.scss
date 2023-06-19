@@ -1,5 +1,9 @@
 @use '../../scss/' as *;
 
+.logo-container-mobile {
+  display: none;
+}
+
 header {
   width: 100%;
   position: fixed;
@@ -52,7 +56,6 @@ header {
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-direction: normal;
-    // animation: logoanim 5s ease-in-out 2s 1 forwards forwards;
   }
 
   @keyframes logoanim {
@@ -70,5 +73,51 @@ header {
   img.logo {
     max-width: 50px;
     object-fit: contain;
+  }
+}
+
+@include mobile {
+  .logo-container-mobile {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    
+    img {
+      height: 40px;
+    }
+  }
+
+  header {
+    bottom: 0;
+    padding: 0;
+    background-color: black;
+    z-index: 10;
+    &.sticky {
+      padding: 0;
+    }
+
+    nav {
+      ul {
+        width: 100%;
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-right: 0;
+        li {
+          padding: 10px 20px;
+        }
+
+        .active li {
+          border-bottom: 4px $primary-color solid;
+        }
+      }
+      .logo-container {
+        display: none;
+      }
+    }
   }
 }

@@ -20,7 +20,7 @@ export function ListSlide(props) {
         grabCursor={true}
         spaceBetween={10}
         // autoplay={true}
-        slidesPerView="7"
+        slidesPerView="1"
         className="slide-list"
         // scrollbar={{ draggable: true, dragSize: 24 }}
         loop={true}
@@ -35,7 +35,7 @@ export function ListSlide(props) {
               </SwiperSlide>
             );
           })}
-        <div class="swiper-scrollbar"></div>
+        {/* <div className="swiper-scrollbar"></div> */}
       </Swiper>
     </div>
   );

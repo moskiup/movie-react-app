@@ -29,6 +29,8 @@
 }
 @include mobile {
   .search-container {
+    padding-top: 80px;
+
     padding-left: 20px;
     width: 100%;
     display: flex;

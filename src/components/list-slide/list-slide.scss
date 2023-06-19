@@ -9,3 +9,20 @@
 // .slide-list .swiper-wrapper {
 //   height: 450px;
 // }
+
+@include mobile {
+  .list-container {
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .movie-card {
+    margin: 0 auto;
+  }
+
+  div.list-container:nth-of-type(3) {
+    padding-top: 50px;
+  }
+}

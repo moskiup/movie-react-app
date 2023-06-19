@@ -31,29 +31,35 @@ export function Header() {
   }, []);
 
   return (
-    <header id="header" className={`navbar ${isSticky ? 'sticky' : ''}`}>
-      <nav id="navbar">
-        <Link to="/">
-          <div className="logo-container">
-            <img src={logo} className="logo" />
-            <h1>MOVIES</h1>
-          </div>
-        </Link>
-        <ul>
-          {MenuList.map((x) => {
-            return (
-              <NavLink
-                key={x.name}
-                className={({ isActive }) => (isActive ? 'active' : '')}
-                to={x.path}
-              >
-                <li key={x.name}>{x.name}</li>
-              </NavLink>
-            );
-          })}
-        </ul>
-      </nav>
-    </header>
+    <>
+      <div className="logo-container-mobile">
+        <img src={logo} className="logo" />
+        <h1>MOVIES</h1>
+      </div>
+      <header id="header" className={`navbar ${isSticky ? 'sticky' : ''}`}>
+        <nav id="navbar">
+          <Link to="/">
+            <div className="logo-container">
+              <img src={logo} className="logo" />
+              <h1>MOVIES</h1>
+            </div>
+          </Link>
+          <ul>
+            {MenuList.map((x) => {
+              return (
+                <NavLink
+                  key={x.name}
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  to={x.path}
+                >
+                  <li key={x.name}>{x.name}</li>
+                </NavLink>
+              );
+            })}
+          </ul>
+        </nav>
+      </header>
+    </>
   );
   //TODO:HACER EL MENU MOVIL
 }
