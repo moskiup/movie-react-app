@@ -3,7 +3,7 @@ import { Loader } from '../loader/Loader';
 import { useEffect, useRef, useState } from 'react';
 import './cardsgrid.css';
 import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export function CardsGrid(props) {
@@ -12,28 +12,44 @@ export function CardsGrid(props) {
   const [isLoading, setIsLoading] = useState(false);
   const unaVez = useRef(true);
   const baseUrl = props.category === category.movie ? 'movies/' : 'series/';
+  let { keyword } = useParams();
 
   useEffect(() => {
     const getlist = async () => {
-      if (props.category === category.movie) {
-        const response = await tmdbApi.getMovieList(movieType.popular, {
+      let response = null;
+      let data = [];
+      if (keyword !== undefined) {
+        response = await tmdbApi.search(props.category, {
           page,
+          query: keyword,
         });
-        if (unaVez.current || page > 1) {
-          setMovies((prev) => [...prev, ...response.results]);
-          unaVez.current = false;
+        if (page === 1) {
+          if (response?.results) {
+            data = response.results.filter((x) => x.poster_path !== null);
+
+            setMovies(data);
+            unaVez.current = false;
+          }
         }
-      } else if (props.category === category.tv) {
-        const response = await tmdbApi.getTvList(tvType.top_rated, { page });
+      } else {
+        if (props.category === category.movie) {
+          response = await tmdbApi.getMovieList(movieType.popular, {
+            page,
+          });
+        } else if (props.category === category.tv) {
+          response = await tmdbApi.getTvList(tvType.top_rated, { page });
+        }
         if (unaVez.current || page > 1) {
-          setMovies((prev) => [...prev, ...response.results]);
-          unaVez.current = false;
+          if (response?.results) {
+            data = response.results.filter((x) => x.poster_path !== null);
+            setMovies((prev) => [...prev, ...data]);
+            unaVez.current = false;
+          }
         }
       }
     };
-
     getlist();
-  }, [page]);
+  }, [page, keyword]);
 
   const fetchMoreData = () => {
     setPage((prev) => prev + 1);
