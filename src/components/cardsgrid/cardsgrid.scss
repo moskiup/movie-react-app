@@ -11,6 +11,12 @@
   width: 80%;
 }
 
+@include tablet {
+  .movie-container {
+    width: 100%;
+  }
+}
+
 @include mobile {
   .movie-container {
     width: 100%;
