@@ -1,15 +1,32 @@
+import { useState } from 'react';
 import { Modal } from '../modal/Modal';
 
 export function TrailerModal(props) {
-  const item = props.item;
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // console.log(item);
-  // const onClose = () => iframeRef.current.setAttribute('src', '');
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
-    // <h1>hola</h1>
-    <Modal active={props.active} id={`modal_${item.id}`}>
-      <iframe width="100%" height="500px" title="trailer"></iframe>
+    <Modal
+      active={props.active}
+      id={`modal_${props.id}`}
+      title={'titulo'}
+      isOpen={modalOpen}
+      onClose={closeModal}
+    >
+      <iframe
+        width="880px"
+        height="500px"
+        title="trailer"
+        src={props.urlVideo}
+        frameBorder="0"
+      ></iframe>
     </Modal>
   );
 }

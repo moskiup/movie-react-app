@@ -1,9 +1,8 @@
-import tmdApi, { movieType } from './../../api/tmdbApi.js';
+import tmdApi, { movieType } from '@api/tmdbApi.js';
 import { useEffect, useState } from 'react';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { HeroSlideItem } from '../heroslider-item/HeroSlideItem';
-import { TrailerModal } from '../trailermodal/TrailerModal.jsx';
+import { HeroSlideItem } from '@components/heroslider-item/HeroSlideItem';
 import './hero-slider.scss';
 
 export function HeroSlider() {
@@ -36,17 +35,11 @@ export function HeroSlider() {
         {movies.map((movie, i) => (
           <SwiperSlide key={i}>
             {({ isActive }) => (
-              <HeroSlideItem
-                item={movie}
-                className={`${isActive ? 'active' : ''}`}
-              />
+              <HeroSlideItem item={movie} className={`${isActive ? 'active' : ''}`} />
             )}
           </SwiperSlide>
         ))}
       </Swiper>
-      {movies.map((item, i) => (
-        <TrailerModal key={'a' + i} item={item} />
-      ))}
     </div>
   );
 }

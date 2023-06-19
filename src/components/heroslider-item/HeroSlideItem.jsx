@@ -1,9 +1,9 @@
-import apiConfig from '../../api/apiConfig';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonFill } from '../buttonfill/ButtonFill';
-import { ButtonOutline } from '../button-outline/ButtonOutline';
-import { Modal } from '../modal/Modal';
+import { ButtonFill, ButtonOutline } from '@components/button/Button';
+import tmdApi, { category } from '@api/tmdbApi';
+import { TrailerModal } from '../trailermodal/TrailerModal';
+import apiConfig from '@api/apiConfig';
 import './hero-slider-item.scss';
 
 export function HeroSlideItem(props) {
@@ -13,65 +13,48 @@ export function HeroSlideItem(props) {
     item.backdrop_path ? item.backdrop_path : item.poster_path
   );
 
-  useEffect(() => {
-    const setModalActive = async () => {
-      // const modal = document.querySelector(`#modal_${item.id}`);
-      // if (videos.results.length > 0) {
-      //   videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
-      //   modal
-      //     .querySelector('.modal__content > iframe')
-      //     .setAttribute('src', videSrc);
-      // } else {
-      //   modal.querySelector('.modal__content').innerHTML = 'No trailer';
-      // }
-      // modal.classList.toggle('active');
-    };
+  const [idvideo, setIdvideo] = useState(0);
+  const [urlVideo, setUrlvideo] = useState('');
 
-    setModalActive();
-  }, []);
+  useEffect(() => {
+    if (idvideo > 0) {
+      const setModalActive = async () => {
+        const videos = (await tmdApi.getVideos(category.movie, idvideo)) || [];
+        if (videos.results.length > 0) {
+          setUrlvideo('https://www.youtube.com/embed/' + videos.results[0].key);
+        }
+      };
+      setModalActive();
+    }
+  }, [idvideo]);
+
+  const asignarVideo = (id) => {
+    setIdvideo(id);
+  };
 
   return (
-    <div
-      className={`hero-slide-item ${props.className}`}
-      style={{ backgroundImage: `url(${background})` }}
-    >
-      <div className="content container">
-        <div className="info">
-          <h2 className="title">{item.title}</h2>
-          <div className="overview">{item.overview}</div>
-          <div className="btns">
-            <Link to={`/movie/${item.id}`}>
-              <ButtonFill texto="See Details" />
-            </Link>
-            <ButtonOutline
-              texto="Watch Trailer"
-              onclick={() => prueba(videSrc)}
-            />
+    <>
+      <div
+        className={`hero-slide-item ${props.className}`}
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <div className="content container">
+          <div className="info">
+            <h2 className="title">{item.title}</h2>
+            <div className="overview">{item.overview}</div>
+            <div className="btns">
+              <Link to={`/movies/${item.id}`}>
+                <ButtonFill text="See Details" />
+              </Link>
+              <ButtonOutline text="Watch Trailer" onclick={() => asignarVideo(item.id)} />
+            </div>
+          </div>
+          <div className="poster">
+            <img src={apiConfig.w300Image(item.poster_path)} alt="" />
           </div>
         </div>
-        <div className="poster">
-          <img src={apiConfig.w300Image(item.poster_path)} alt="" />
-        </div>
       </div>
-    </div>
+      {urlVideo !== '' ? <TrailerModal urlVideo={urlVideo} id={idvideo}></TrailerModal> : null}
+    </>
   );
 }
-
-const TrailerModal = (props) => {
-  const item = props.item;
-
-  const iframeRef = useRef(null);
-
-  const onClose = () => iframeRef.current.setAttribute('src', '');
-
-  return (
-    <Modal active={false} id={`modal_${item.id}`}>
-      <iframe
-        ref={iframeRef}
-        width="100%"
-        height="500px"
-        title="trailer"
-      ></iframe>
-    </Modal>
-  );
-};

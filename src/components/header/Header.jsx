@@ -1,6 +1,6 @@
-import './header.scss';
-import { NavLink, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import './header.scss';
 import logo from './../../../public/logo.png';
 
 export function Header() {
