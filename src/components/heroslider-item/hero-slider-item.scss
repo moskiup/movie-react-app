@@ -129,3 +129,21 @@
     }
   }
 }
+
+@include tablet {
+  .hero-slide-item {
+    .content {
+      .info {
+        width: 100%;
+
+        .title {
+          font-size: 3rem;
+        }
+
+        .overview {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

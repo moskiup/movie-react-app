@@ -1,4 +1,4 @@
-@use "./../../scss/" as *;
+@use './../../scss/' as *;
 
 .hero-slider {
   height: 100vh;
@@ -7,6 +7,4 @@
   @include mobile() {
     display: none;
   }
-
-  
 }

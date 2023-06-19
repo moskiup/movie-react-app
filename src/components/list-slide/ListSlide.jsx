@@ -22,7 +22,7 @@ export function ListSlide(props) {
         // autoplay={true}
         slidesPerView="7"
         className="slide-list"
-        scrollbar={{ draggable: true, dragSize: 24 }}
+        // scrollbar={{ draggable: true, dragSize: 24 }}
         loop={true}
       >
         {movies &&

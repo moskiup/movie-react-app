@@ -2,16 +2,13 @@
 
 .detail-background {
   height: 100vh;
-  background: center;
+  background: center / cover no-repeat;
   display: grid;
   justify-items: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 
-  &::before {
+  &::before,
+  &::after {
     content: '';
-    background-color: rgba($body-bg, 0.6);
     position: absolute;
     top: 0;
     left: 0;
@@ -19,13 +16,11 @@
     height: 100vh;
   }
 
+  &::before {
+    background-color: rgba($body-bg, 0.6);
+  }
+
   &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: linear-gradient(to top, $body-bg, rgba($body-bg, 0));
   }
 
@@ -43,6 +38,7 @@
       flex-flow: column nowrap;
       justify-content: center;
       padding: 3rem;
+
       .title {
         font-size: 2.5rem;
         text-align: center;
@@ -65,6 +61,7 @@
         gap: 1rem 0;
       }
     }
+
     .poster {
       display: flex;
       flex-direction: column;
@@ -74,6 +71,7 @@
         font-size: 1.5rem;
         margin-bottom: 14px;
       }
+
       img {
         border-radius: 20px;
         max-width: 300px;
@@ -99,6 +97,7 @@
       grid-template-columns: repeat(auto-fill, 120px);
       gap: 20px;
       justify-content: center;
+
       .cast-card {
         img {
           height: 100px;
@@ -120,23 +119,20 @@
       }
     }
   }
-}
 
-@include tablet {
-  .detail-background {
+  @include tablet {
     overflow: scroll;
-    height: 100vh;
 
     .detail-container {
       width: 100%;
       margin-top: 120px;
-
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
 
       .info {
         padding: 1.5rem;
+
         .title {
           font-size: 1.5rem;
 
@@ -148,44 +144,24 @@
 
         .overview {
           margin-top: 1rem;
-        }
-      }
-      .poster {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        div {
-          font-size: 1.5rem;
-          margin-bottom: 14px;
-        }
-      }
-
-      .cast-container {
-        h1 {
-          text-align: center;
-          font-size: 2rem;
         }
       }
     }
   }
-}
 
-@include mobile {
-  .detail-background {
+  @include mobile {
     overflow: scroll;
-    height: 100vh;
 
     .detail-container {
       width: 100%;
       margin-top: 120px;
-
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
 
       .info {
         padding: 1.5rem;
+
         .title {
           font-size: 1.5rem;
 
@@ -199,24 +175,15 @@
           margin-top: 1rem;
         }
       }
-      .poster {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
 
+      .poster {
         div {
           font-size: 1.5rem;
           margin-bottom: 14px;
         }
+
         img {
           display: none;
-        }
-      }
-
-      .cast-container {
-        h1 {
-          text-align: center;
-          font-size: 2rem;
         }
       }
     }
