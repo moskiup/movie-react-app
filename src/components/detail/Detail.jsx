@@ -17,11 +17,14 @@ export function Detail() {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
+    //REVISAR NO ES NUMERO EL ID
+    if (isNaN(id)) navigate('/', { replace: true });
+
     const getDetail = async () => {
-      if (!Number.isInteger(id)) navigate('/', { replace: true });
       let _category = location.pathname.includes('movies') ? category.movie : category.tv;
       const detail = await tmdApi.detail(_category, id);
       const credits = await tmdApi.credits(_category, id);
+
       setMovie(detail);
       setCredits(credits);
     };
