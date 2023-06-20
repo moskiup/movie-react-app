@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import tmdApi, { category } from '@api/tmdbApi';
 import apiConfig from '@api/apiConfig';
 import './detail.scss';
@@ -9,6 +9,7 @@ import { Loader } from '@components/loader/Loader';
 export function Detail() {
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [credits, setCredits] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,6 +18,7 @@ export function Detail() {
 
   useEffect(() => {
     const getDetail = async () => {
+      if (!Number.isInteger(id)) navigate('/', { replace: true });
       let _category = location.pathname.includes('movies') ? category.movie : category.tv;
       const detail = await tmdApi.detail(_category, id);
       const credits = await tmdApi.credits(_category, id);
