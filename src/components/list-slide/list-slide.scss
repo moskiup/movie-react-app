@@ -10,6 +10,10 @@
 //   height: 450px;
 // }
 
+.swiper-slide {
+  width: auto !important;
+}
+
 @include mobile {
   .list-container {
     h1 {

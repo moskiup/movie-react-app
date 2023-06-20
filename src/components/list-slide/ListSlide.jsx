@@ -20,7 +20,7 @@ export function ListSlide(props) {
         grabCursor={true}
         spaceBetween={10}
         // autoplay={true}
-        slidesPerView="1"
+        slidesPerView="auto"
         className="slide-list"
         // scrollbar={{ draggable: true, dragSize: 24 }}
         loop={true}
