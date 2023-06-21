@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './header.scss';
-import logo from './../../../public/logo.png';
+import logo from '@/public/logo.png';
+import { useStickyNav } from '@/hooks/useStickyNav';
 
 export function Header() {
   const MenuList = [
@@ -9,26 +10,8 @@ export function Header() {
     { name: 'Movies', path: '/movies' },
     { name: 'TV Series', path: '/series' },
   ];
-
-  const [isSticky, setIsSticky] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const navbar = document.getElementById('navbar');
-      const navbarOffsetTop = navbar.offsetTop;
-      if (scrollPosition - 100 >= 0) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const refElem = useRef(null);
+  const { isSticky } = useStickyNav(refElem);
 
   return (
     <>
@@ -37,7 +20,7 @@ export function Header() {
         <h1>mDb</h1>
       </div>
       <header id="header" className={`navbar ${isSticky ? 'sticky' : ''}`}>
-        <nav id="navbar">
+        <nav id="navbar" ref={refElem}>
           <Link to="/">
             <div className="logo-container">
               <img src={logo} className="logo" />

@@ -1,5 +1,5 @@
-import { MovieCard } from '../moviecard/MovieCard';
-import { Loader } from '../loader/Loader';
+import { MovieCard } from '@components/moviecard/MovieCard';
+import { Loader } from '@components/loader/Loader';
 import { useEffect, useRef, useState } from 'react';
 import './cardsgrid.scss';
 import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';

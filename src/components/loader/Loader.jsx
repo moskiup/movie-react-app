@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './loader.scss';
 
 export function Loader() {

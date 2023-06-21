@@ -11,7 +11,6 @@ export function ListSlide(props) {
   const movies = props.movies || [];
   const title = props.title;
   const category = props.category;
-  // SwiperCore.use([Scrollbar]);
 
   return (
     <div className="list-container">
