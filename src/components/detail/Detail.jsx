@@ -1,73 +1,60 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import tmdApi, { category } from '@api/tmdbApi';
-import apiConfig from '@api/apiConfig';
 import './detail.scss';
 import { ButtonOutline } from '@components/button/Button';
 import { Loader } from '@components/loader/Loader';
+import { useDetail } from './../../hooks/useDetail';
+import apiConfig from '@api/apiConfig';
 
 export function Detail() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [credits, setCredits] = useState({});
-  const [isLoading, setLoading] = useState(true);
-  const [preloadImage, setPreload] = useState('');
-  const [movie, setMovie] = useState({});
+  const { credits, movie, isLoading, setLoading, preloadImage } = useDetail({
+    location: location.pathname,
+    id,
+  });
 
   useEffect(() => {
-    //REVISAR NO ES NUMERO EL ID
     if (isNaN(id)) navigate('/', { replace: true });
-
-    const getDetail = async () => {
-      let _category = location.pathname.includes('movies') ? category.movie : category.tv;
-      const detail = await tmdApi.detail(_category, id);
-      const credits = await tmdApi.credits(_category, id);
-
-      setMovie(detail);
-      setCredits(credits);
-    };
-
-    getDetail();
   }, []);
 
-  const posterUrl = apiConfig.originalImage(
-    movie.backdrop_path ? movie.backdrop_path : movie.poster_path
-  );
-  let preload = '';
+  // {
 
-  function handleLoad() {
-    setTimeout(() => {
-      setLoading(false);
-      setPreload(posterUrl);
-    }, 1000);
-  }
-
+  // }
   return (
     <>
-      {isLoading ? <Loader /> : null}
       {isLoading ? (
-        <img src={posterUrl} onLoad={handleLoad} style={{ maxWidth: '100%', maxHeight: '100vh' }} />
-      ) : (
+        <>
+          <Loader />
+          <img
+            src={preloadImage}
+            onLoad={() => {
+              setLoading(false);
+            }}
+            style={{ position: 'absolute', height: '0px', width: '0px' }}
+          />
+        </>
+      ) : null}
+
+      {movie && preloadImage !== '' ? (
         <div className="detail-background" style={{ backgroundImage: `url(${preloadImage})` }}>
           <div className="detail-container">
             <DetailInfo movie={movie} />
             <DetailCast credits={credits} />
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
 
 function DetailInfo({ movie }) {
   const imageUrl = apiConfig.w300Image(movie.poster_path ? movie.poster_path : movie.backdrop_path);
-
   return (
     <>
       <div className="poster">
-        <div>⭐{movie.vote_average}</div>
+        <div>⭐{movie && movie.vote_average}</div>
         <img src={imageUrl} />
       </div>
       <div className="info">
