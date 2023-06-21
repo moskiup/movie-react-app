@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './header.scss';
-import logo from '@/public/logo.png';
+import logo from '@/../public/logo.png';
 import { useStickyNav } from '@/hooks/useStickyNav';
 
 export function Header() {

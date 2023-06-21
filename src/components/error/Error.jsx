@@ -1,7 +1,7 @@
 import './error.scss';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imgUrl from '@/public/error404.png';
+import imgUrl from '@/../public/error404.png';
 
 export function Error() {
   const navigate = useNavigate();

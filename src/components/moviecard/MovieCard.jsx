@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import './MovieCard.scss'
+import { useState } from 'react';
+import './MovieCard.scss';
 
 export function MovieCard(props) {
   // const { title , overview , popularity , vote_average , }
 
-  const [isLoading, setLoading] = useState(true)
-  const { movie } = props
-  const imagen_url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path
+  const [isLoading, setLoading] = useState(true);
+  const { movie } = props;
+  const imagen_url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
 
   function handlerLoad() {
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -23,5 +23,5 @@ export function MovieCard(props) {
         <h1>{`${movie.title || movie.name}`}</h1>
       </div>
     </>
-  )
+  );
 }

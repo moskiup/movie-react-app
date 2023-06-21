@@ -6,19 +6,11 @@
   background-color: black;
   z-index: 5;
   position: absolute;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   display: grid;
   justify-items: center;
   align-items: center;
   align-content: center;
   row-gap: 2rem;
-
-  // + .visible {
-  //   display: grid;
-  // }
 
   .title {
     font-size: 3rem;
@@ -36,10 +28,6 @@
     }
   }
 }
-
-// .loader-container .visible {
-//   display: grid;
-// }
 
 @keyframes square-animation {
   0% {

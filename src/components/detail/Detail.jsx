@@ -3,7 +3,7 @@ import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import './detail.scss';
 import { ButtonOutline } from '@components/button/Button';
 import { Loader } from '@components/loader/Loader';
-import { useDetail } from '@hooks/useDetail';
+import { useDetail } from '@/hooks/useDetail';
 import apiConfig from '@api/apiConfig';
 
 export function Detail() {

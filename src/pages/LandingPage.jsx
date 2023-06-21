@@ -5,7 +5,7 @@ import tmdApi, { tvType, movieType } from '../api/tmdbApi.js';
 import { useState, useEffect } from 'react';
 import { Loader } from '@components/loader/Loader.jsx';
 
-export function LandingPage() {
+function useLandingFetch() {
   const [topMovies, setTopMovies] = useState(null);
   const [topSeries, setTopSeries] = useState(null);
   const [trendSeries, setTrendSeries] = useState(null);
@@ -28,6 +28,11 @@ export function LandingPage() {
     getMovies();
   }, []);
 
+  return { isLoading, trendMovies, trendSeries, topSeries, topMovies };
+}
+
+export function LandingPage() {
+  const { isLoading, trendMovies, trendSeries, topSeries, topMovies } = useLandingFetch();
   return (
     <>
       {isLoading ? <Loader /> : null}

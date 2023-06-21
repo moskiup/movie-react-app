@@ -34,7 +34,6 @@ export function ListSlide(props) {
               </SwiperSlide>
             );
           })}
-        {/* <div className="swiper-scrollbar"></div> */}
       </Swiper>
     </div>
   );
